@@ -19,7 +19,7 @@ class CRM_Uepalcontacts_Page_RecentChanges extends CRM_Core_Page {
     $sql = "
       select
         l.log_date modification_date,
-        l.id modified_contact,
+        l.id modified_contact_id,
         l.display_name modified_contact,
         l.log_action,
         c.display_name modified_by
