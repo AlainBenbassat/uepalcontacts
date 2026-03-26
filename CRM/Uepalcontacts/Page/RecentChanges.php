@@ -4,6 +4,10 @@ use CRM_Uepalcontacts_ExtensionUtil as E;
 class CRM_Uepalcontacts_Page_RecentChanges extends CRM_Core_Page {
 
   public function run() {
+    $dsn = defined('CIVICRM_LOGGING_DSN') ? CRM_Utils_SQL::autoSwitchDSN(CIVICRM_LOGGING_DSN) : CRM_Utils_SQL::autoSwitchDSN(CIVICRM_DSN);
+    $dsn = DB::parseDSN($dsn);
+    $this->db = $dsn['database'];
+
     CRM_Utils_System::setTitle('Modifications récentes');
 
     $this->assign('recentChanges', $this->getData());
@@ -20,9 +24,9 @@ class CRM_Uepalcontacts_Page_RecentChanges extends CRM_Core_Page {
         l.log_action,
         c.display_name modified_by
       from 
-        log_civicrm_contact l 
+        bddcivicrmlog.log_civicrm_contact l 
       inner join 
-        log_civicrm_contact c on c.id = l.log_user_id  
+        bddcivicrmlog.log_civicrm_contact c on c.id = l.log_user_id  
       order by 
         1 desc 
       limit 

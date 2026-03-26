@@ -1,6 +1,6 @@
 <table class="report">
   <tr class="columnheader">
-    <th>Contact</th>
+    <th>Contact modifié</th>
     <th>Modifié le</th>
     <th>Par</th>
     <th>Type d'action</th>
