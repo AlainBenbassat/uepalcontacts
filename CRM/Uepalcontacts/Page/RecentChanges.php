@@ -27,12 +27,12 @@ class CRM_Uepalcontacts_Page_RecentChanges extends CRM_Core_Page {
         bddcivicrmlog.log_civicrm_contact l 
       inner join 
         bddcivicrmlog.log_civicrm_contact c on c.id = l.log_user_id  
+      where
+        l.log_date > DATE_SUB(NOW(), INTERVAL 1 MONTH)
       group by
         l.log_date, l.id, l.display_name, l.log_action, c.display_name  
       order by 
         1 desc 
-      limit 
-        0,$limit
     ";
 
     $dao = CRM_Core_DAO::executeQuery($sql);
